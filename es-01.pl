@@ -29,5 +29,15 @@ search2(X, cons(_, T)) :- search2(X, T).
 search_two(X, cons(X, cons(B, cons(X, _)))) :- X \= B.
 search_two(X, cons(_, T)) :- search_two(X, T).
 
-% search_two(a, cons(c,cons(a,cons(a,cons(b,nil))))).
-% search_two(a, cons(c,cons(a,cons(d,cons(a,cons(b,nil)))))).
+% search_two(a, cons(c,cons(a,cons(a,cons(b,nil))))). → no
+% search_two(a, cons(c,cons(a,cons(d,cons(a,cons(b,nil)))))). → yes
+
+
+
+% 1.4) search_anytwo(Elem, List)
+% looks for any Elem that occurs two times, anywhere
+search_anytwo(X, cons(X, T)) :- search(X, T).
+search_anytwo(X, cons(_, T)) :- search_anytwo(X, T).
+
+% search_anytwo(a, cons(c,cons(a,cons(a,cons(b,nil))))). → yes
+% search_anytwo(a, cons(c,cons(a,cons(d,cons(a,cons(b,nil)))))). → yes
