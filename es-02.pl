@@ -38,3 +38,18 @@ max(cons(H, T), TM, M) :- greater(H, TM), max(T, H, M).
 max(cons(H, T), TM, M) :- greater(TM, H), max(T, TM, M).
 
 % max(cons(s(zero), cons(s(s(zero)), cons(zero, cons(s(s(s(zero))), nil)))), X). yes. → X / s(s(s(s(zero))))
+
+
+
+% minMax(List,Min,Max)
+% Min is the smallest element in List
+% Max is the biggest element in List
+% Suppose the list has at least one element
+minMax(cons(H, T), Min, Max) :- minMax(T, H, H, Min, Max).
+minMax(nil, TMin, TMax, TMin, TMax).
+minMax(cons(H, T), TMin, TMax, Min, Max) :- greater(H, TMax), minMax(T, TMin, H, Min, Max).
+minMax(cons(H, T), TMin, TMax, Min, Max) :- greater(TMin, H), minMax(T, H, TMax, Min, Max).
+
+% minMax(cons(s(s(s(s(zero)))), cons(s(s(zero)), cons(zero, cons(zero, nil)))), Min, Max).
+% yes. → Min / zero
+%			 → Max / s(s(s(s(zero))))
