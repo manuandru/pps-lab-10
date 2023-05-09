@@ -21,8 +21,8 @@ sum_list(cons(H, T), O) :- sum_list(T, PS), sum(H, PS, O).
 % count(List, Element, NOccurrences)
 % it uses count(List, Element, NOccurrencesSoFar, NOccurrences)
 count(L, E, N) :- count(L, E, zero, N).
-count(nil, E, N, N).
-count(cons(H, T), E, N, M) :- count(T, E, s(N), M).
+count(nil, _, N, N).
+count(cons(_, T), E, N, M) :- count(T, E, s(N), M).
 count(cons(H, T), E, N, M) :- H \= E, count(T, E, N, M).
 
 
