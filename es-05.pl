@@ -53,3 +53,14 @@ dropRight(cons(H, T), N, s(M), O) :- dropRight(T, N, M, O), greater(N, M).
 % dropWhile(cons(zero, cons(zero, cons(s(zero), cons(zero, nil)))), cons(s(zero), cons(zero, nil))).
 dropWhile(cons(H, T), cons(H, T)) :- greater(H, zero).
 dropWhile(cons(H, T), L) :- H = zero, dropWhile(T, L).
+
+
+
+% partition(List, ListYes, ListNot): List will be partitioned in
+% - ListYes = {x in List: x > 0}
+% - ListNot = {x in List: x = 0}
+% partition(cons(zero, cons(s(s(zero)), cons(s(zero), cons(zero, nil)))), cons(s(s(zero)), cons(s(zero), nil)), cons(zero, cons(zero, nil))).
+% [0, 1, 2, 0] partition => [1,2],[0,0]
+partition(nil, nil, nil).
+partition(cons(H, T), cons(H, L1), L2) :- greater(H, zero), partition(T, L1, L2).
+partition(cons(H, T), L1, cons(H, L2)) :- H = zero, partition(T, L1, L2).
