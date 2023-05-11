@@ -26,3 +26,10 @@ filter(cons(H1, T1), T2) :- H1 = zero, filter(T1, T2).
 count(nil, zero).
 count(cons(H, T), s(N)) :- greater(H, zero), count(T, N).
 count(cons(H, T), N) :- H = zero, count(T, N).
+
+
+
+% find(List, E): E is the first element > 0 in List
+% find(cons(zero, cons(s(sero), cons(s(s(zero)), nil))), s(sero))
+find(cons(H, T), H) :- greater(H, zero).
+find(cons(H, T), E) :- H = zero, find(T, E).
