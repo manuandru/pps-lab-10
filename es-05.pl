@@ -33,3 +33,15 @@ count(cons(H, T), N) :- H = zero, count(T, N).
 % find(cons(zero, cons(s(sero), cons(s(s(zero)), nil))), s(sero))
 find(cons(H, T), H) :- greater(H, zero).
 find(cons(H, T), E) :- H = zero, find(T, E).
+
+
+
+greaterEqual(_, zero).
+greaterEqual(s(N), s(M)) :- greaterEqual(N, M).
+% dropRight(ListIn, N, ListOut): ListOut is ListIn without last N element
+% dropRight(cons(a, cons(b, cons(c, nil))), s(s(zero)), cons(a, nil)).
+% [a,b,c] drop 2 => [a]
+dropRight(ListIn, N, ListOut) :- dropRight(ListIn, N, M, ListOut).
+dropRight(nil, N, zero, nil).
+dropRight(cons(H, T), N, s(M), cons(H, O)) :- dropRight(T, N, M, O), greaterEqual(M, N).
+dropRight(cons(H, T), N, s(M), O) :- dropRight(T, N, M, O), greater(N, M).
