@@ -18,3 +18,11 @@ greater(s(N), s(M)) :- greater(N, M).
 filter(nil, nil).
 filter(cons(H1, T1), cons(H1, T2)) :- greater(H1, zero), filter(T1, T2).
 filter(cons(H1, T1), T2) :- H1 = zero, filter(T1, T2).
+
+
+
+% count(List, N): N is the number of x > 0 in List
+% count(cons(zero, cons(s(sero), cons(zero, nil))), s(zero))
+count(nil, zero).
+count(cons(H, T), s(N)) :- greater(H, zero), count(T, N).
+count(cons(H, T), N) :- H = zero, count(T, N).
