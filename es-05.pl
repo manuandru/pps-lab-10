@@ -45,3 +45,11 @@ dropRight(ListIn, N, ListOut) :- dropRight(ListIn, N, M, ListOut).
 dropRight(nil, N, zero, nil).
 dropRight(cons(H, T), N, s(M), cons(H, O)) :- dropRight(T, N, M, O), greaterEqual(M, N).
 dropRight(cons(H, T), N, s(M), O) :- dropRight(T, N, M, O), greater(N, M).
+
+
+
+% dropWhile(ListIn, ListOut): ListOut is ListIn without longest prefix of element that match {x>0}
+% [0, 0, 1, 0] dropWhile => [1, 0]
+% dropWhile(cons(zero, cons(zero, cons(s(zero), cons(zero, nil)))), cons(s(zero), cons(zero, nil))).
+dropWhile(cons(H, T), cons(H, T)) :- greater(H, zero).
+dropWhile(cons(H, T), L) :- H = zero, dropWhile(T, L).
