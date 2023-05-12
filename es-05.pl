@@ -89,3 +89,13 @@ drop(cons(H, T), s(N), O) :- drop(T, N, O).
 % Cannot take more than ListIn elements
 take(L, zero, nil).
 take(cons(H, T), s(N), cons(H, O)) :- take(T, N, O).
+
+
+
+% zip(List1, List2, PairList):
+% PairList[i] = pair(List1[i], List2[i])
+% zip(cons(a, cons(b, cons(c, nil))), cons(c, cons(b, cons(a, nil))), cons(pair(a,c), cons(pair(b,b), cons(pair(c,a), nil))))
+% zip(L, nil, nil).
+% zip(nil, L, nil). % consider the shortest List
+zip(nil, nil, nil). % -> match only if List1 and List2 have same length
+zip(cons(H1, T1), cons(H2, T2), cons(pair(H1, H2), O)) :- zip(T1, T2, O).
