@@ -73,3 +73,11 @@ partition(cons(H, T), L1, cons(H, L2)) :- H = zero, partition(T, L1, L2).
 reversed(List, ListReversed) :- reversed(List, nil, ListReversed).
 reversed(nil, Acc, Acc).
 reversed(cons(H, T), Acc, L2) :- reversed(T, cons(H, Acc), L2).
+
+
+
+% drop(ListIn, N, ListOut): ListOut is ListIn without first N elements
+% drop(cons(a, cons(b, cons(c, nil))), s(s(zero)), cons(c, nil))
+drop(nil, N, nil).
+drop(T, zero, T).
+drop(cons(H, T), s(N), O) :- drop(T, N, O).
