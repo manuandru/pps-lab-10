@@ -78,6 +78,14 @@ reversed(cons(H, T), Acc, L2) :- reversed(T, cons(H, Acc), L2).
 
 % drop(ListIn, N, ListOut): ListOut is ListIn without first N elements
 % drop(cons(a, cons(b, cons(c, nil))), s(s(zero)), cons(c, nil))
-drop(nil, N, nil).
+% drop(nil, N, nil). -> with this we can drop more than ListIn elements, is it the right behaviour?
 drop(T, zero, T).
 drop(cons(H, T), s(N), O) :- drop(T, N, O).
+
+
+
+% take(ListIn, N, ListOut): ListOut is ListIn with first N elements
+% take(cons(a, cons(b, cons(c, nil))), s(s(zero)), cons(a, cons(b, nil)))
+% Cannot take more than ListIn elements
+take(L, zero, nil).
+take(cons(H, T), s(N), cons(H, O)) :- take(T, N, O).
