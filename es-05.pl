@@ -11,6 +11,7 @@ map(nil, nil).
 map(cons(H1, T1), cons(s(H1), T2)) :- map(T1, T2).
 
 
+
 greater(s(_), zero).
 greater(s(N), s(M)) :- greater(N, M).
 % filter(ListIn, ListOut): ListOut = ListIn \ {x: x <= 0}
@@ -64,3 +65,11 @@ dropWhile(cons(H, T), L) :- H = zero, dropWhile(T, L).
 partition(nil, nil, nil).
 partition(cons(H, T), cons(H, L1), L2) :- greater(H, zero), partition(T, L1, L2).
 partition(cons(H, T), L1, cons(H, L2)) :- H = zero, partition(T, L1, L2).
+
+
+
+% reversed(List, ListReversed): reverse the list
+% reversed(cons(a, cons(b, cons(c, nil))), cons(c, cons(b, cons(a, nil))))
+reversed(List, ListReversed) :- reversed(List, nil, ListReversed).
+reversed(nil, Acc, Acc).
+reversed(cons(H, T), Acc, L2) :- reversed(T, cons(H, Acc), L2).
